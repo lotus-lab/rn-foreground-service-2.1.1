@@ -14,6 +14,7 @@ import com.facebook.react.HeadlessJsTaskService;
 import static com.supersami.foregroundservice.Constants.NOTIFICATION_CONFIG;
 import static com.supersami.foregroundservice.Constants.TASK_CONFIG;
 
+import android.content.pm.ServiceInfo;
 
 // NOTE: headless task will still block the UI so don't do heavy work, but this is also good
 // since they will share the JS environment
@@ -79,7 +80,7 @@ public class ForegroundService extends Service {
                 .getInstance(getApplicationContext())
                 .buildNotification(getApplicationContext(), notificationConfig);
 
-            startForeground(id, notification);
+            startForeground(id, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
 
             running += 1;
 
